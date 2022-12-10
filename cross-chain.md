@@ -1,10 +1,10 @@
 Cross-Chain NFTs using CrossTalk:
 
-Cross-chain nfts: Transfering of NFT from one blockchain to another blockchain .
+Cross-chain NFTs: Transfering of NFT from one blockchain to another blockchain.
 
 CrossTalk: RouterProtocol's in-house library to perform this task(ie. Cross-chaining / briding NFTs).
 
-We will be using ERC1155 token to make truly cross-chain NFTs.
+We will be using the ERC1155 token to make truly cross-chain NFTs.
 
 𝐈𝐦𝐩𝐨𝐫𝐭 𝐑𝐞𝐪. 𝐜𝐨𝐧𝐭𝐫𝐚𝐜𝐭𝐬:
 
@@ -16,7 +16,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 ​
 We are defining the solidity version.
 
-After that, we are importing RouterCrossTalk contract along with OPenzeppelin's ERC1155 contract and Interface of ERC20 token.
+After that, we are importing the RouterCrossTalk contract along with Openzeppelin's ERC1155 contract and the Interface of the ERC20 token.
 
 𝐈𝐧𝐢𝐭𝐢𝐚𝐥𝐢𝐳𝐞 𝐚 𝐍𝐞𝐰 𝐂𝐨𝐧𝐭𝐫𝐚𝐜𝐭:
 
@@ -32,8 +32,8 @@ contract CrossChainERC1155 is ERC1155, RouterCrossTalk {
 
 We are creating a new Contract named CrossChainERC1155 and inheriting ERC1155, RouterCrossTalk 
 and declaring 2 variables 
-one as owner of the contract, others as 
-gasLimit while transfering NFT from one chain to other.
+one as the owner of the contract, others as 
+gasLimit while transferring NFT from one chain to other.
 and passing the constructor arguments “uri_” and “genericHandler_”.
 
 𝐒𝐞𝐭𝐭𝐢𝐧𝐠 𝐀𝐝𝐦𝐢𝐧𝐢𝐬𝐭𝐫𝐚𝐭𝐢𝐯𝐞 𝐟𝐮𝐧𝐜𝐭𝐢𝐨𝐧𝐬:
@@ -83,10 +83,10 @@ and passing the constructor arguments “uri_” and “genericHandler_”.
         return _crossChainGasLimit;
     }
 
-In the above functions we are setting admin powers to the functions by which only the owner will be able to modify that functions because we dont want to other developers ot modify them.
+The above functions owner will only be able to modify those functions because we don't want other developers to modify them.
 
 functions like, 
-setFeesToken -> in this function we will be deciding in which token we will be charging the fees and we only want admin to set this.
+setFeesToken -> in this function we will be deciding in which token we will be charging the fees and we only want the admin to set this.
 
 _𝐬𝐞𝐧𝐝𝐂𝐫𝐨𝐬𝐬𝐂𝐡𝐚𝐢𝐧 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧:
 
@@ -116,19 +116,19 @@ function _sendCrossChain(
 
 𝐒𝐞𝐧𝐝𝐂𝐫𝐨𝐬𝐬𝐂𝐡𝐚𝐢𝐧 𝐟𝐮𝐧𝐜𝐭𝐢𝐨𝐧:
 
-It is the heart of our contract because in this function we are deciding destination, chainId, receiver address, id number, amount to be transfered, crossChainGasPrice(amount of gas to be spent when transfering from sender to receiver).
+It is the heart of our contract because in this function we are deciding destination, chainId, receiver address, id number, amount to be transferred, and crossChainGasPrice(amount of gas to be spent when transferring from sender to receiver).
 
-It returns bool and byte datatype.
+It returns the bool and byte datatype.
 
-It calls _burnBatch() by which we are deleting the particular id and the amount that has been transferred( or oppn to happen), in burn batch we will be burning more than 2 ids because of which it reduces gas cost and makes process easier.
+It calls _burnBatch() by which we are deleting the particular id and the amount that has been transferred, in the burn batch, we will be burning multiple ids which reduce gas cost and make the process easier.
 
-After that we are hashing the receiveCrossChain function and type casting them into bytes4 type as keccak256 hashing returns 32 bytes data & we required bytes4 type of data.
+After that, we are hashing the receiveCrossChain function and type casting them into bytes4 type as keccak256 hashing returns 32 bytes data & we required bytes4 type of data.
 
-In this line we are encoding recipient,ids,amounts and data, storing them in data of bytes datatype.
+In this line we are encoding recipient, ids, amounts, and data, storing them in data of bytes datatype.
 
-In this line we are collecting success(boolean) and hash(bytes) from routerSend() which returns bunch of data but we need just 2 variables so in Soldity using the above method we can perform this task.
+In this line, we are collecting success(boolean) and hash(bytes) from routerSend() which returns a bunch of data but we need just 2 variables so in Solidity using the above method we can perform this task.
 
-And at end returning success, and hash.
+And at the end returning success and hash.
 
 _𝐫𝐨𝐮𝐭𝐞𝐫𝐒𝐲𝐧𝐜𝐇𝐚𝐧𝐝𝐥𝐞𝐫 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧:
 
@@ -149,11 +149,11 @@ function _routerSyncHandler(bytes4 _selector, bytes memory _data)
     }
 
 
-In this function we are syncing with the data that is about to pass. 
+In this function, we are syncing with the data that is about to pass. 
 
-WTH do I mean by above line is ,
+WTH do I mean by the above line is,
 
-In this function we are overriding the RouterCrossTalk's contract function's logic by placing it with our requirements,
+In this function, we are overriding the RouterCrossTalk's contract function's logic by placing it with our requirements,
 
 𝐫𝐞𝐜𝐞𝐢𝐯𝐞𝐂𝐫𝐨𝐬𝐬𝐂𝐡𝐚𝐢𝐧 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧:
 
@@ -167,8 +167,8 @@ In this function we are overriding the RouterCrossTalk's contract function's log
         return true;
     }
 
-This function will burn the tokens in source chain after sending the respective tokens to the destination chain.
-It accepts recipients adress, array of id's, array of amounts and data and returns true if the mint is successful or else false.
+This function will burn the tokens in the source chain after sending the respective tokens to the destination chain.
+It accepts the recipient's address, an array of IDs, an array of amounts, and data and returns true if the mint is successful or else false.
 
 𝐫𝐞𝐩𝐥𝐚𝐲𝐓𝐫𝐚𝐧𝐬𝐟𝐞𝐫𝐂𝐫𝐨𝐬𝐬𝐂𝐡𝐚𝐢𝐧 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧:
 
@@ -187,7 +187,7 @@ It accepts recipients adress, array of id's, array of amounts and data and retur
         routerReplay(hash, crossChainGasLimit, crossChainGasPrice);
     }
 
-This function is used to revert back the transaction if the source chain does'nt provide sufficient gas while executing the transaction.
+This function is used to revert the transaction if the source chain doesn't provide sufficient gas while executing the transaction.
 
 𝐑𝐞𝐟𝐞𝐫 𝐝𝐨𝐜𝐬: 
 
