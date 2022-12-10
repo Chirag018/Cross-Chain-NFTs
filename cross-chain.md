@@ -1,6 +1,6 @@
 Cross-Chain NFTs using CrossTalk:
 
-Cross-chain NFTs: Transfering of NFT from one blockchain to another blockchain.
+Cross-chain NFTs: Transferring of NFT from one blockchain to another blockchain.
 
 CrossTalk: RouterProtocol's in-house library to perform this task(ie. Cross-chaining / briding NFTs).
 
