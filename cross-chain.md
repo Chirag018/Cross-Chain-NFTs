@@ -10,8 +10,11 @@ We will be using the ERC1155 token to make truly cross-chain NFTs.
 
 pragma solidity ^0.8.0;
 ​
+
 import "@routerprotocol/router-crosstalk/contracts/RouterCrossTalk.sol";
+
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 ​
 We are defining the solidity version.
@@ -192,4 +195,5 @@ This function is used to revert the transaction if the source chain doesn't prov
 𝐑𝐞𝐟𝐞𝐫 𝐝𝐨𝐜𝐬: 
 
 https://dev.routerprotocol.com
+
 https://dev.routerprotocol.com/crosstalk-library/cross-chain-nfts-using-crosstalk/replaytransfercrosschain-function
