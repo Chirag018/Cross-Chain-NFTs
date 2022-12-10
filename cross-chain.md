@@ -1,14 +1,12 @@
 Cross-Chain NFTs using CrossTalk:
 
-Cross-chain nfts: transfering or sharing of nfts with different Blockchains without any hussle .
+Cross-chain nfts: Transfering of NFT from one blockchain to another blockchain .
 
-CrossTalk: RouterProtocol's in-house library to perform this task(ie. Cross-chaining NFTs).
-
+CrossTalk: RouterProtocol's in-house library to perform this task(ie. Cross-chaining / briding NFTs).
 
 We will be using ERC1155 token to make truly cross-chain NFTs.
 
-/bold Import Req. contracts:
-
+𝐈𝐦𝐩𝐨𝐫𝐭 𝐑𝐞𝐪. 𝐜𝐨𝐧𝐭𝐫𝐚𝐜𝐭𝐬:
 
 pragma solidity ^0.8.0;
 ​
@@ -20,8 +18,7 @@ We are defining the solidity version.
 
 After that, we are importing RouterCrossTalk contract along with OPenzeppelin's ERC1155 contract and Interface of ERC20 token.
 
-/bold Initialize a New Contract
-
+𝐈𝐧𝐢𝐭𝐢𝐚𝐥𝐢𝐳𝐞 𝐚 𝐍𝐞𝐰 𝐂𝐨𝐧𝐭𝐫𝐚𝐜𝐭:
 
 contract CrossChainERC1155 is ERC1155, RouterCrossTalk { 
     address public owner;
@@ -39,7 +36,7 @@ one as owner of the contract, others as
 gasLimit while transfering NFT from one chain to other.
 and passing the constructor arguments “uri_” and “genericHandler_”.
 
-/bold Setting Administrative functions
+𝐒𝐞𝐭𝐭𝐢𝐧𝐠 𝐀𝐝𝐦𝐢𝐧𝐢𝐬𝐭𝐫𝐚𝐭𝐢𝐯𝐞 𝐟𝐮𝐧𝐜𝐭𝐢𝐨𝐧𝐬:
 
  
    /**
@@ -91,7 +88,7 @@ In the above functions we are setting admin powers to the functions by which onl
 functions like, 
 setFeesToken -> in this function we will be deciding in which token we will be charging the fees and we only want admin to set this.
 
-/bold _sendCrossChain Function:
+_𝐬𝐞𝐧𝐝𝐂𝐫𝐨𝐬𝐬𝐂𝐡𝐚𝐢𝐧 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧:
 
 function _sendCrossChain(
         uint8 _destChainID,
@@ -117,7 +114,8 @@ function _sendCrossChain(
         return (success, hash);
     }
 
-SendCrossChain function:
+𝐒𝐞𝐧𝐝𝐂𝐫𝐨𝐬𝐬𝐂𝐡𝐚𝐢𝐧 𝐟𝐮𝐧𝐜𝐭𝐢𝐨𝐧:
+
 It is the heart of our contract because in this function we are deciding destination, chainId, receiver address, id number, amount to be transfered, crossChainGasPrice(amount of gas to be spent when transfering from sender to receiver).
 
 It returns bool and byte datatype.
@@ -132,7 +130,7 @@ In this line we are collecting success(boolean) and hash(bytes) from routerSend(
 
 And at end returning success, and hash.
 
-/bold _routerSyncHandler Function:
+_𝐫𝐨𝐮𝐭𝐞𝐫𝐒𝐲𝐧𝐜𝐇𝐚𝐧𝐝𝐥𝐞𝐫 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧:
 
 function _routerSyncHandler(bytes4 _selector, bytes memory _data)
         internal
@@ -157,7 +155,7 @@ WTH do I mean by above line is ,
 
 In this function we are overriding the RouterCrossTalk's contract function's logic by placing it with our requirements,
 
-/bold receiveCrossChain Function:
+𝐫𝐞𝐜𝐞𝐢𝐯𝐞𝐂𝐫𝐨𝐬𝐬𝐂𝐡𝐚𝐢𝐧 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧:
 
   function receiveCrossChain(
         address _recipient,
@@ -172,7 +170,7 @@ In this function we are overriding the RouterCrossTalk's contract function's log
 This function will burn the tokens in source chain after sending the respective tokens to the destination chain.
 It accepts recipients adress, array of id's, array of amounts and data and returns true if the mint is successful or else false.
 
-/bold replayTransferCrossChain Function:
+𝐫𝐞𝐩𝐥𝐚𝐲𝐓𝐫𝐚𝐧𝐬𝐟𝐞𝐫𝐂𝐫𝐨𝐬𝐬𝐂𝐡𝐚𝐢𝐧 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧:
 
     /**
      * @notice replayTransaction Used to replay the transaction if it failed due to low gaslimit or gasprice
@@ -190,3 +188,8 @@ It accepts recipients adress, array of id's, array of amounts and data and retur
     }
 
 This function is used to revert back the transaction if the source chain does'nt provide sufficient gas while executing the transaction.
+
+𝐑𝐞𝐟𝐞𝐫 𝐝𝐨𝐜𝐬: 
+
+https://dev.routerprotocol.com
+https://dev.routerprotocol.com/crosstalk-library/cross-chain-nfts-using-crosstalk/replaytransfercrosschain-function
